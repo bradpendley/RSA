@@ -18,7 +18,6 @@ def main():
     print("\n\n\n----------------")
     print("n is",n)
     print("phi(n) is",phiOfN)
-    # only thing that I did not write myself
     d = inverse(e,phiOfN)
     print("Encryption key is",e)
     print("Decryption key is",d)
