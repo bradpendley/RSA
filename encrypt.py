@@ -1,7 +1,7 @@
 # A Project by David Blunk for the Information Security Administration Class
 # Thought coding out the entire problem would better my understanding of this concept
 # All code is written by me unless otherwise specified in the comments
-# he code is based on https://www.youtube.com/watch?v=9sY57iwNDJw&t=298s
+# The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw&t=298s
 import math
 
 def main():
