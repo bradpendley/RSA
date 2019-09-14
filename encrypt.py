@@ -1,44 +1,71 @@
 # A Project by David Blunk for the Information Security Administration Class
 # Thought coding out the entire problem would better my understanding of this concept
 # All code is written by me unless otherwise specified in the comments
-# The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw&t=298s
+# The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw
 import math
 
 def main():
     # Since upper and lowercase characters do not matter for RSA, we will put everything to lowercase
     secretCode = input("Enter a secret passphrase: ").lower()
     convertedCode = letterConverter(secretCode)
-    p = 0
-    q = 0
     # giving p and q values and checking if numbers are prime and actual numbers
-    try:
-        p = int(input("Enter p: "))
-        for iterator in range(2, p):
-            if p % iterator is 0:
-                exit(0)
-        q = int(input("Enter q: "))
-        for iterator in range(2, q):
-            if q % iterator is 0:
-                exit(0)
-    except:
-        print("p and q have to be prime numbers")
-        exit(0)
+    p = pickP()
+    q = pickQ()
     phiOfN = (p - 1) * (q - 1)
     print("Pick a number lower than",phiOfN,"for e")
-    e = int(input("Enter e: "))
-    # Checking for disqualifying factors
-    if math.gcd(e,phiOfN) is not 1 or e < 1 or e > phiOfN:
-        print("Has to be larger than 1, lower than phi(n), and shares no other factors other than 1")
-        exit(0)
+    e = pickE(phiOfN)
     n = p*q
+    print("\n\n\n----------------")
     print("n is",n)
     print("phi(n) is",phiOfN)
     # only thing that I did not write myself
     d = inverse(e,phiOfN)
-    print("d is",d)
+    print("Encryption key is",e)
+    print("Decryption key is",d)
     print("Cypher # is: ", end="")
     for x in range(0,len(convertedCode)):
         print(pow(int(convertedCode[x]), e) %n , end=" ")
+    print("\n----------------")
+
+def pickE(phiOfN):
+    e = ""
+    try:
+        e = int(input("Enter e: "))
+    except:
+        print("e has to be an integer")
+        pickE(phiOfN)
+    # Checking for disqualifying factors
+    if math.gcd(e,phiOfN) is not 1 or e < 1 or e > phiOfN:
+        print("Has to be larger than 1, lower than phi(n), and shares no other factors other than 1")
+        pickE(phiOfN)
+    return e
+
+def pickP():
+    p = ""
+    try:
+        p = int(input("Enter p: "))
+        for iterator in range(2, p//2):
+            if p % iterator is 0:
+                print("p has to be a prime number")
+                pickP()
+        return p
+    except:
+        print("Please enter an integer")
+        pickP()
+
+
+def pickQ():
+    q = ""
+    try:
+        q = int(input("Enter q: "))
+        for iterator in range(2, q // 2):
+            if q % iterator is 0:
+                print("q has to be a prime number")
+                pickQ()
+        return q
+    except:
+        print("Please enter an integer")
+        pickQ()
 
 
 # This function is not my code, couldn't figure out modinverse, so I got some help from Stackoverflow.com
