@@ -32,7 +32,6 @@ def main():
         exit(0)
     n = p*q
     print("n is",n)
-
     print("phi(n) is",phiOfN)
     # only thing that I did not write myself
     d = inverse(e,phiOfN)
