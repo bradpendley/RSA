@@ -2,6 +2,7 @@
 # Thought coding out the entire problem would better my understanding of this concept
 # All code is written by me unless otherwise specified in the comments
 # The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw
+# TODO: Implement various checks, such as 1's and negative numbers
 import math
 
 def main():
