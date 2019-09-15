@@ -19,8 +19,8 @@ def main():
     print("n is",n)
     print("phi(n) is",phiOfN)
     d = inverse(e,phiOfN)
-    print("Encryption key is",e)
-    print("Decryption key is",d)
+    print("Public key is e:",e,"n:",n)
+    print("Private Key key is d:",d,"n:",n)
     print("Cypher # is \"", end="")
     for x in range(0,len(convertedCode)):
         # breaking this up to make it read a bit easier
@@ -70,7 +70,7 @@ def pickQ():
         pickQ()
 
 
-# Taken from daniweb.com because mine was not optimized and slow
+# Taken from daniweb.com since mine was buggy and not optimized
 def checkPrime(num):
     if num < 2:
         return False
@@ -95,6 +95,7 @@ def inverse(e, phi):
         return a % phi
     else:
         print("Must be coprime!")
+        exit(0)
 
 
 def letterConverter(secretCode):
@@ -108,7 +109,7 @@ def letterConverter(secretCode):
         phraseNum = ""
         # Splitting up the index by characters
         for charSplit in arraySplit:
-            # Putting a value for each character, starting with a being 1 with the help of the ASCII table. Special characters and numbers are buggy for now
+            # Putting a value for each character, starting with a being 1 (using ASCII tables, so will be buggy with anything else but regular characters)
             charValue = ord(charSplit) - 96
             # Adding each value to the phraseNum string
             phraseNum += str(charValue)
