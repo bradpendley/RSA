@@ -2,7 +2,6 @@
 # Thought coding out the entire problem would better my understanding of this concept
 # All code is written by me unless otherwise specified in the comments
 # The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw
-# TODO: Implement various checks, such as 1's and negative numbers
 import math
 
 def main():
@@ -24,7 +23,10 @@ def main():
     print("Decryption key is",d)
     print("Cypher # is \"", end="")
     for x in range(0,len(convertedCode)):
-        print(pow(int(convertedCode[x]), e) %n , end=" ")
+        # breaking this up to make it read a bit easier
+        powerOf = pow(int(convertedCode[x]),e)
+        moduleOf = powerOf % n
+        print(moduleOf, end=" ")
     print("\b\"\n----------------")
 
 def pickE(phiOfN):
@@ -44,10 +46,10 @@ def pickP():
     p = ""
     try:
         p = int(input("Enter p: "))
-        for iterator in range(2, p//2):
-            if p % iterator is 0:
-                print("p has to be a prime number")
-                pickP()
+        isPrime = checkPrime(p)
+        if isPrime is not True:
+            print("q has to be a prime number")
+            pickQ()
         return p
     except:
         print("Please enter an integer")
@@ -58,14 +60,29 @@ def pickQ():
     q = ""
     try:
         q = int(input("Enter q: "))
-        for iterator in range(2, q // 2):
-            if q % iterator is 0:
-                print("q has to be a prime number")
-                pickQ()
+        isPrime = checkPrime(q)
+        if isPrime is not True:
+            print("q has to be a prime number")
+            pickQ()
         return q
     except:
         print("Please enter an integer")
         pickQ()
+
+
+# Taken from daniweb.com
+def checkPrime(num):
+    if num < 2:
+        return False
+    if num is 2:
+        return True
+    if not num & 1:
+        return False
+    for x in range(3, int(num ** 0.5) + 1, 2):
+        if num % x == 0:
+            return False
+    return True
+
 
 
 # This function is not my code, couldn't figure out modinverse, so I got some help from Stackoverflow.com
