@@ -70,7 +70,7 @@ def pickQ():
         pickQ()
 
 
-# Taken from daniweb.com
+# Taken from daniweb.com because mine was not optimized and slow
 def checkPrime(num):
     if num < 2:
         return False
