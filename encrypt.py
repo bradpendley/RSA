@@ -21,7 +21,7 @@ def main():
     d = inverse(e,phiOfN)
     print("Encryption key is",e)
     print("Decryption key is",d)
-    print("Cypher # is: \"", end="")
+    print("Cypher # is \"", end="")
     for x in range(0,len(convertedCode)):
         print(pow(int(convertedCode[x]), e) %n , end=" ")
     print("\b\"\n----------------")
