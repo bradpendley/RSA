@@ -108,7 +108,7 @@ def letterConverter(secretCode):
         phraseNum = ""
         # Splitting up the index by characters
         for charSplit in arraySplit:
-            # Putting a value for each character, starting with a being 1
+            # Putting a value for each character, starting with a being 1 with the help of the ASCII table. Special characters and numbers are buggy for now
             charValue = ord(charSplit) - 96
             # Adding each value to the phraseNum string
             phraseNum += str(charValue)
