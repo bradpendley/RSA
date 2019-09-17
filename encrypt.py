@@ -9,6 +9,8 @@ def gcd(a, b):
         a, b = b, a % b
     return a
 
+# This function is not my code, couldn't figure out modinverse, so I got some help from Stackoverflow.com
+# Modified based on Nikita Tiwari's method.
 def inverse(e, phi) : 
     e = e % phi; 
     for x in range(1, phi) : 
@@ -16,6 +18,7 @@ def inverse(e, phi) :
             return x 
     return 1
 
+# Taken from daniweb.com since mine was buggy and not optimized
 def checkPrime(num):
     if num == 2:
         return True
@@ -26,6 +29,7 @@ def checkPrime(num):
             return False
     return True
 
+# Check for prime and if they are equal, then generate private and public keys
 def genkeys(p, q):
     if not (checkPrime(p) and checkPrime(q)):
         raise ValueError('Both numbers must be prime.')
