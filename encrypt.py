@@ -3,11 +3,7 @@
 # All code is written by me unless otherwise specified in the comments
 # The code is based on https://www.youtube.com/watch?v=9sY57iwNDJw and the Wikipedia article showcasing RSA encryption
 import random
-
-def gcd(a, b):
-    while b != 0:
-        a, b = b, a % b
-    return a
+import math
 
 # This function is not my code, couldn't figure out modinverse, so I got some help from Stackoverflow.com
 # Modified based on Nikita Tiwari's method.
@@ -39,10 +35,10 @@ def genkeys(p, q):
 
     phi = (p-1) * (q-1)
     e = random.randrange(1, phi)
-    g = gcd(e, phi)
+    g = math.gcd(e, phi)
     while g != 1:
         e = random.randrange(1, phi)
-        g = gcd(e, phi)
+        g = math.gcd(e, phi)
 
     d = inverse(e, phi)
     
